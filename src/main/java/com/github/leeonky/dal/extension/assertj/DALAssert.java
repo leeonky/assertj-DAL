@@ -10,15 +10,32 @@ public class DALAssert extends AbstractAssert<DALAssert, Object> {
     }
 
     public static DALAssert assertThat(Object actual) {
+        return expect(actual);
+    }
+
+    public static DALAssert expect(Object actual) {
         return new DALAssert(actual);
     }
 
     public DALAssert should(String dalCode) {
+        return should("", dalCode);
+    }
+
+    private DALAssert should(String code, String dalCode) {
+        String fullCode = code + dalCode;
         try {
-            new DAL().evaluate(actual, dalCode);
+            new DAL().evaluate(actual, fullCode);
         } catch (DalException dalException) {
-            failWithMessage(dalException.show(dalCode) + "\n" + dalException.getMessage() + "\n");
+            failWithMessage(dalException.show(fullCode, code.length()) + "\n" + dalException.getMessage() + "\n");
         }
         return this;
+    }
+
+    public DALAssert exact(String dalCode) {
+        return should("=", dalCode);
+    }
+
+    public DALAssert match(String dalCode) {
+        return should(":", dalCode);
     }
 }
