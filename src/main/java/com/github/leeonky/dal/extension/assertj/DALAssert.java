@@ -5,6 +5,8 @@ import com.github.leeonky.dal.runtime.DalException;
 import org.assertj.core.api.AbstractAssert;
 
 public class DALAssert extends AbstractAssert<DALAssert, Object> {
+    private static DAL dal = DAL.INSTANCE;
+
     public DALAssert(Object actual) {
         super(actual, DALAssert.class);
     }
@@ -17,6 +19,14 @@ public class DALAssert extends AbstractAssert<DALAssert, Object> {
         return new DALAssert(actual);
     }
 
+    public static DAL getDal() {
+        return dal;
+    }
+
+    public static void setDal(DAL dal) {
+        DALAssert.dal = dal;
+    }
+
     public DALAssert should(String dalCode) {
         return should("", dalCode);
     }
@@ -24,7 +34,7 @@ public class DALAssert extends AbstractAssert<DALAssert, Object> {
     private DALAssert should(String code, String dalCode) {
         String fullCode = code + dalCode;
         try {
-            new DAL().evaluate(actual, fullCode);
+            dal.evaluate(actual, fullCode);
         } catch (DalException dalException) {
             failWithMessage(dalException.show(fullCode, code.length()) + "\n" + dalException.getMessage() + "\n");
         }
