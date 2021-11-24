@@ -5,7 +5,7 @@ import com.github.leeonky.dal.runtime.DalException;
 import org.assertj.core.api.AbstractAssert;
 
 public class DALAssert extends AbstractAssert<DALAssert, Object> {
-    private static DAL dal = DAL.INSTANCE;
+    private static DAL dal = DAL.getInstance();
 
     public DALAssert(Object actual) {
         super(actual, DALAssert.class);
