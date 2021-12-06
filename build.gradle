@@ -30,7 +30,7 @@ task sourcesJar(type: Jar) {
 }
 
 group = 'com.github.leeonky'
-version = '0.0.4' + System.env.VERSION_SCOPE
+version = '0.0.5' + System.env.VERSION_SCOPE
 sourceCompatibility = 1.8
 
 jacocoTestReport {
@@ -45,8 +45,8 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.assertj:assertj-core:3.11.1'
-    compile 'com.github.leeonky:DAL-java:0.1.8'
+    implementation 'org.assertj:assertj-core:3.21.0'
+    compile 'com.github.leeonky:DAL-java:0.1.9'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
     testAnnotationProcessor('org.projectlombok:lombok:1.18.4')
