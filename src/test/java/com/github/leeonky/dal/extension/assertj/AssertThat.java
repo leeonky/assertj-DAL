@@ -22,7 +22,7 @@ public class AssertThat {
         void assertion_failed() {
             assertThat(assertThrows(AssertionError.class,
                     () -> DALAssert.assertThat("string").should("= 'another string'")))
-                    .hasMessage("= 'another string'\n" +
+                    .hasMessage("\n= 'another string'\n" +
                             "  ^\n" +
                             "Expecting java.lang.String\n" +
                             "<string>\n" +
@@ -44,7 +44,7 @@ public class AssertThat {
         void assertion_failed() {
             assertThat(assertThrows(AssertionError.class,
                     () -> DALAssert.assertThat("string").exact("'another string'")))
-                    .hasMessage("'another string'\n" +
+                    .hasMessage("\n'another string'\n" +
                             "^\n" +
                             "Expecting java.lang.String\n" +
                             "<string>\n" +
@@ -67,7 +67,7 @@ public class AssertThat {
         void assertion_failed() {
             assertThat(assertThrows(AssertionError.class,
                     () -> DALAssert.assertThat(2).match("/1/")))
-                    .hasMessage("/1/\n" +
+                    .hasMessage("\n/1/\n" +
                             "^\n" +
                             "Expecting java.lang.Integer\n" +
                             "<2>\n" +

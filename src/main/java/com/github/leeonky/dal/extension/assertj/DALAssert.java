@@ -36,7 +36,7 @@ public class DALAssert extends AbstractAssert<DALAssert, Object> {
         try {
             dal.evaluate(actual, fullCode);
         } catch (DalException dalException) {
-            failWithMessage("%s", dalException.show(fullCode, code.length()) + "\n" + dalException.getMessage() + "\n");
+            failWithMessage("\n%s\n%s\n", dalException.show(fullCode, code.length()), dalException.getMessage());
         }
         return this;
     }
