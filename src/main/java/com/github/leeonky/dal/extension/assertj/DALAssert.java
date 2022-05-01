@@ -1,7 +1,7 @@
 package com.github.leeonky.dal.extension.assertj;
 
 import com.github.leeonky.dal.DAL;
-import com.github.leeonky.dal.runtime.DalException;
+import com.github.leeonky.interpreter.InterpreterException;
 import org.assertj.core.api.AbstractAssert;
 
 public class DALAssert extends AbstractAssert<DALAssert, Object> {
@@ -31,11 +31,11 @@ public class DALAssert extends AbstractAssert<DALAssert, Object> {
         return should("", dalCode);
     }
 
-    private DALAssert should(String code, String dalCode) {
+    public DALAssert should(String code, String dalCode) {
         String fullCode = code + dalCode;
         try {
             dal.evaluate(actual, fullCode);
-        } catch (DalException dalException) {
+        } catch (InterpreterException dalException) {
             failWithMessage("\n%s\n%s\n", dalException.show(fullCode, code.length()), dalException.getMessage());
         }
         return this;
